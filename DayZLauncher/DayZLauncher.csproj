@@ -6,4 +6,36 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resource\back.png" />
+    <None Remove="Resource\discord1.png" />
+    <None Remove="Resource\discord2.png" />
+    <None Remove="Resource\POWER1.png" />
+    <None Remove="Resource\POWER2.png" />
+    <None Remove="Resource\Roboto-Black.ttf" />
+    <None Remove="Resource\Roboto-Regular.ttf" />
+    <None Remove="Resource\vk1.png" />
+    <None Remove="Resource\vk2.png" />
+    <None Remove="Resource\web.png" />
+    <None Remove="Resource\website2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resource\back.png" />
+    <Resource Include="Resource\discord1.png" />
+    <Resource Include="Resource\discord2.png" />
+    <Resource Include="Resource\POWER1.png" />
+    <Resource Include="Resource\POWER2.png" />
+    <Resource Include="Resource\Roboto-Black.ttf" />
+    <Resource Include="Resource\Roboto-Regular.ttf" />
+    <Resource Include="Resource\vk1.png" />
+    <Resource Include="Resource\vk2.png" />
+    <Resource Include="Resource\web.png" />
+    <Resource Include="Resource\website2.png" />
+  </ItemGroup>
+
 </Project>
