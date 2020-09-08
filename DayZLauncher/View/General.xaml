@@ -4,10 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DayZLauncher"
+        xmlns:view="clr-namespace:DayZLauncher.View"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewModel="clr-namespace:DayZLauncher.ViewModel"
         mc:Ignorable="d"
         Title="GGAMES" Height="600" Width="1024" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:AccountPageViewModel}">
+            <view:AccountPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:NewsPageViewModel}">
+            <view:NewsPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ServersPageViewModel}">
+            <view:ServersPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ModsPageViewModel}">
+            <view:ModsPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ParametersPageViewModel}">
+            <view:ParametersPage />
+        </DataTemplate>
+    </Window.Resources>
 
     <Window.DataContext>
         <viewModel:GeneralViewModel/>
@@ -73,7 +92,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Rectangle Grid.Column="0" Name="MyRectangle" Fill="#423F49" Width="5"></Rectangle>
-                                        <TextBlock VerticalAlignment="Center" Grid.Column="1" Name="MyItem"  Margin="5" Text="{Binding Item}"/>
+                                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Name="MyItem"  Margin="5,0,5,0" Text="{Binding Item}"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
@@ -159,5 +178,6 @@
                 </Image.Style>
             </Image>
         </Grid>
+        <ContentPresenter  Grid.Column="1" Grid.Row="1" Content="{Binding CurrentPageViewModel}"/>
     </Grid>
 </Window>

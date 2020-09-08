@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DayZLauncher.View;
+using DayZLauncher.ViewModel;
 using System.Windows;
 
 namespace DayZLauncher
@@ -13,5 +9,14 @@ namespace DayZLauncher
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            General app = new General();
+            GeneralViewModel context = new GeneralViewModel();
+            app.DataContext = context;
+            app.Show();
+        }
     }
 }

@@ -1,27 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
+using System.Linq;
 using System.Windows;
-using DayZLauncher.Annotations;
+using System.Windows.Input;
 using DayZLauncher.Model;
-using DayZLauncher.Utility;
+using DayZLauncher.Navigation;
 
 namespace DayZLauncher.ViewModel
 {
-    class GeneralViewModel : INotifyPropertyChanged
+    public class GeneralViewModel : BaseViewModel
     {
-        public GeneralViewModel()
+
+        private IPageViewModel _currentPageViewModel;
+        private List<IPageViewModel> _pageViewModels;
+
+        public List<IPageViewModel> PageViewModels
         {
-            Menu = new List<MenuItem>()
+            get
             {
-                new MenuItem(){Item = "ACCOUNT"},
-                new MenuItem(){Item = "NEWS"},
-                new MenuItem(){Item = "SERVERS"},
-                new MenuItem(){Item = "MODS"},
-                new MenuItem(){Item = "PARAMETERS"}
-            };
+                if (_pageViewModels == null)
+                    _pageViewModels = new List<IPageViewModel>();
+
+                return _pageViewModels;
+            }
+        }
+
+        public IPageViewModel CurrentPageViewModel
+        {
+            get => _currentPageViewModel;
+            set
+            {
+                _currentPageViewModel = value;
+                OnPropertyChanged("CurrentPageViewModel");
+            }
+        }
+
+        private void ChangeViewModel(IPageViewModel viewModel)
+        {
+            if (!PageViewModels.Contains(viewModel))
+            {
+                PageViewModels.Add(viewModel);
+            }
+            else
+            {
+                CurrentPageViewModel = PageViewModels
+                    .FirstOrDefault(vm => vm == viewModel);
+            }
         }
 
         private List<MenuItem> menu;
@@ -59,31 +83,43 @@ namespace DayZLauncher.ViewModel
                     switch (SelectedMenuItem?.Item)
                     {
                         case "ACCOUNT":
-                            MessageBox.Show("Нажата вкладка Account!");
+                            CurrentPageViewModel = PageViewModels[0];
                             break;
                         case "NEWS":
-                            MessageBox.Show("Нажата вкладка News!");
+                            CurrentPageViewModel = PageViewModels[1];
                             break;
                         case "SERVERS":
-                            MessageBox.Show("Нажата вкладка Servers!");
+                            CurrentPageViewModel = PageViewModels[2];
                             break;
                         case "MODS":
-                            MessageBox.Show("Нажата вкладка Mods!");
+                            CurrentPageViewModel = PageViewModels[3];
                             break;
                         case "PARAMETERS":
-                            MessageBox.Show("Нажата вкладка Parameters!");
+                            CurrentPageViewModel = PageViewModels[4];
                             break;
                     }
                 });
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public GeneralViewModel()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Menu = new List<MenuItem>()
+            {
+                new MenuItem(){Item = "ACCOUNT"},
+                new MenuItem(){Item = "NEWS"},
+                new MenuItem(){Item = "SERVERS"},
+                new MenuItem(){Item = "MODS"},
+                new MenuItem(){Item = "PARAMETERS"}
+            };
+
+            PageViewModels.Add(new AccountPageViewModel());
+            PageViewModels.Add(new NewsPageViewModel());
+            PageViewModels.Add(new ServersPageViewModel());
+            PageViewModels.Add(new ModsPageViewModel());
+            PageViewModels.Add(new ParametersPageViewModel());
+
+            CurrentPageViewModel = PageViewModels[0];
         }
     }
 }

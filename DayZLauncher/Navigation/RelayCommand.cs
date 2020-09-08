@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace DayZLauncher.Utility
+namespace DayZLauncher.Navigation
 {
     public class RelayCommand : ICommand
     {

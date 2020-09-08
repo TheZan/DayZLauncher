@@ -1,6 +1,6 @@
 ﻿namespace DayZLauncher.Model
 {
-    class MenuItem
+    public class MenuItem
     {
         public string Item { get; set; }
     }
