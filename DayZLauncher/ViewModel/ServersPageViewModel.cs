@@ -22,7 +22,7 @@ namespace DayZLauncher.ViewModel
         {
             while (true)
             {
-                await Task.Run(ServersMonitoring.GetServersInfo);
+                Servers = await Task.Run(ServersMonitoring.GetServersInfo);
                 await Task.Delay(15000);
             }
         }
