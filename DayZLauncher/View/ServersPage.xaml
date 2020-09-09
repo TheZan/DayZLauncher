@@ -17,10 +17,23 @@
             <TabItem Header="GGAMES">
                 <DataGrid IsReadOnly="True" GridLinesVisibility="None" RowHeaderWidth="0" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Servers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="200" Header="NAME" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Width="Auto" Header="MAP" Binding="{Binding Map}"/>
-                        <DataGridTextColumn Width="100" Header="PLAYERS" Binding="{Binding Players}"/>
-                        <DataGridTextColumn Width="100" Header="STATUS" Binding="{Binding Status}"/>
+                        <DataGridTemplateColumn Header="NAME">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center" Width="200" Text="{Binding name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Width="Auto" Header="MAP" Binding="{Binding map, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Width="100" Header="PLAYERS">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{} {0}/{1}">
+                                    <Binding Path="players_cur" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                                    <Binding Path="players_max" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="100" Header="STATUS" Binding="{Binding status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <DataGridTemplateColumn Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

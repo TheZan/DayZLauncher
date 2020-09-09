@@ -1,8 +1,12 @@
 ﻿using DayZLauncher.Model;
 using DayZLauncher.Navigation;
+using DayZLauncher.Utility;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DayZLauncher.ViewModel
 {
@@ -10,20 +14,22 @@ namespace DayZLauncher.ViewModel
     {
         public ServersPageViewModel()
         {
-            Servers = new List<Server>()
-            {
-                new Server(){Name = "GGAMES DAYZ 1.08 MODED", Map = "CHERNARUSPLUSGLOOM", Players = "75/75", Status = "ONLINE"},
-                new Server(){Name = "GGAMES DAYZ 1.08 MODED", Map = "CHERNARUSPLUSGLOOM", Players = "75/75", Status = "ONLINE"},
-                new Server(){Name = "GGAMES DAYZ 1.08 MODED", Map = "CHERNARUSPLUSGLOOM", Players = "75/75", Status = "ONLINE"},
-                new Server(){Name = "GGAMES DAYZ 1.08 MODED", Map = "CHERNARUSPLUSGLOOM", Players = "75/75", Status = "ONLINE"},
-                new Server(){Name = "GGAMES DAYZ 1.08 MODED", Map = "CHERNARUSPLUSGLOOM", Players = "75/75", Status = "ONLINE"},
-                new Server(){Name = "GGAMES DAYZ 1.08 MODED", Map = "CHERNARUSPLUSGLOOM", Players = "75/75", Status = "ONLINE"}
-            };
+            Servers = ServersMonitoring.GetServersInfo();
+            Task.Run(RefreshMonitoring);
         }
 
-        private List<Server> servers;
+        private async void RefreshMonitoring()
+        {
+            while (true)
+            {
+                await Task.Run(ServersMonitoring.GetServersInfo);
+                await Task.Delay(15000);
+            }
+        }
 
-        public List<Server> Servers
+        private ObservableCollection<Server> servers;
+
+        public ObservableCollection<Server> Servers
         {
             get => servers;
             set

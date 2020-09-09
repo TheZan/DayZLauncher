@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using DayZLauncher.Model;
 using DayZLauncher.Navigation;
+using DayZLauncher.Utility;
 
 namespace DayZLauncher.ViewModel
 {
