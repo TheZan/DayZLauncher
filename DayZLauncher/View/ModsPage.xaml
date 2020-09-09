@@ -11,8 +11,8 @@
     <UserControl.DataContext>
         <viewModel:ModsPageViewModel/>
     </UserControl.DataContext>
-    
-    <Grid Background="Red">
-            
+
+    <Grid>
+        <TextBlock FontSize="30" FontWeight="Black" Text="Mods Page" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
     </Grid>
 </UserControl>

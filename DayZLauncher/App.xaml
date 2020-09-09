@@ -3,5 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DayZLauncher">
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style/TabControlStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Style/ScrollBarStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

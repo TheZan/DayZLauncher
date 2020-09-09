@@ -35,19 +35,6 @@ namespace DayZLauncher.ViewModel
             }
         }
 
-        private void ChangeViewModel(IPageViewModel viewModel)
-        {
-            if (!PageViewModels.Contains(viewModel))
-            {
-                PageViewModels.Add(viewModel);
-            }
-            else
-            {
-                CurrentPageViewModel = PageViewModels
-                    .FirstOrDefault(vm => vm == viewModel);
-            }
-        }
-
         private List<MenuItem> menu;
 
         public List<MenuItem> Menu
@@ -106,11 +93,11 @@ namespace DayZLauncher.ViewModel
         {
             Menu = new List<MenuItem>()
             {
-                new MenuItem(){Item = "ACCOUNT"},
-                new MenuItem(){Item = "NEWS"},
-                new MenuItem(){Item = "SERVERS"},
-                new MenuItem(){Item = "MODS"},
-                new MenuItem(){Item = "PARAMETERS"}
+                new MenuItem(){Item = "ACCOUNT", IsEnabled = false},
+                new MenuItem(){Item = "NEWS", IsEnabled = false},
+                new MenuItem(){Item = "SERVERS", IsEnabled = true},
+                new MenuItem(){Item = "MODS", IsEnabled = true},
+                new MenuItem(){Item = "PARAMETERS", IsEnabled = true}
             };
 
             PageViewModels.Add(new AccountPageViewModel());
@@ -119,7 +106,7 @@ namespace DayZLauncher.ViewModel
             PageViewModels.Add(new ModsPageViewModel());
             PageViewModels.Add(new ParametersPageViewModel());
 
-            CurrentPageViewModel = PageViewModels[0];
+            CurrentPageViewModel = PageViewModels[2];
         }
     }
 }

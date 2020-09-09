@@ -6,13 +6,47 @@
              xmlns:local="clr-namespace:DayZLauncher.View"
              xmlns:viewModel="clr-namespace:DayZLauncher.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="603">
 
     <UserControl.DataContext>
         <viewModel:ServersPageViewModel/>
     </UserControl.DataContext>
-    
-    <Grid Background="PaleVioletRed">
-            
+
+    <Grid>
+        <TabControl Margin="10">
+            <TabItem Header="GGAMES">
+                <DataGrid IsReadOnly="True" GridLinesVisibility="None" RowHeaderWidth="0" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Servers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="200" Header="NAME" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Width="Auto" Header="MAP" Binding="{Binding Map}"/>
+                        <DataGridTextColumn Width="100" Header="PLAYERS" Binding="{Binding Players}"/>
+                        <DataGridTextColumn Width="100" Header="STATUS" Binding="{Binding Status}"/>
+                        <DataGridTemplateColumn Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Grid>
+                                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Roboto" Foreground="#FFFFFF" Text="START"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Cursor" Value="Hand"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="OTHER SERVERS">
+                <TextBlock Text="Coming soon" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="30"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>
