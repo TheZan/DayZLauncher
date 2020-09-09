@@ -8,6 +8,8 @@
                 <ResourceDictionary Source="Style/TabControlStyle.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Style/DataGridStyle.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Style/ScrollBarStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Style/TextBoxStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Style/CheckBoxStyle.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
