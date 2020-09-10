@@ -19,28 +19,20 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="25"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Rectangle Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="0" Fill="#45326D"/>
-                    <Rectangle Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="1" Fill="#45326D"/>
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="PROFILE NAME:"/>
-                        <TextBox VerticalAlignment="Center" Height="15" Width="200"></TextBox>
-                        <Button Margin="5">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Grid VerticalAlignment="Center">
-                                        <Rectangle Name="BackRect" Width="80" VerticalAlignment="Center" Height="25" Fill="#2B233C"></Rectangle>
-                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="SAVE" Foreground="#FFFFFF"></TextBlock>
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Cursor" Value="Hand"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </StackPanel>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Grid.Column="0" Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="0" Fill="#45326D"/>
+                    <TextBlock HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="PROFILE NAME:"/>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Height="15" Width="200"/>
+                    <Rectangle Grid.Column="0" Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="1" Fill="#45326D"/>
+                    <TextBlock HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="GAME PATH:"/>
+                    <TextBox IsReadOnly="True" Text="{Binding GamePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Height="15" Width="200"/>
+                    <Button Command="{Binding SelectGamePathCommand}" Content="SELECT FOLDER" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
+                    <Button Content="SAVE SETTINGS" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
                 </Grid>
             </TabItem>
             <TabItem Header="ADVANCED">
@@ -112,21 +104,7 @@
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="15" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="15" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="CLOSE STEAM WHEN GAME START:"/>
                     <CheckBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="15" VerticalAlignment="Center" Height="15" Width="15"></CheckBox>
-                    <Button Margin="5" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="15">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Grid VerticalAlignment="Center">
-                                    <Rectangle Name="BackRect" Width="80" VerticalAlignment="Center" Height="25" Fill="#2B233C"></Rectangle>
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="SAVE SETTINGS" Foreground="#FFFFFF"></TextBlock>
-                                </Grid>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Cursor" Value="Hand"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                    <Button Content="SAVE SETTINGS" Margin="5" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="15"/>
                 </Grid>
             </TabItem>
         </TabControl>

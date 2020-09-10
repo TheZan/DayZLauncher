@@ -6,6 +6,8 @@ using System.Windows.Input;
 using DayZLauncher.Model;
 using DayZLauncher.Navigation;
 using DayZLauncher.Utility;
+using DayZLauncher.View;
+using Microsoft.Win32;
 
 namespace DayZLauncher.ViewModel
 {
@@ -108,6 +110,20 @@ namespace DayZLauncher.ViewModel
             PageViewModels.Add(new ParametersPageViewModel());
 
             CurrentPageViewModel = PageViewModels[2];
+
+            GetGamePath();
+        }
+
+        private void GetGamePath()
+        {
+            if (LauncherSettings.Default.GamePath == "")
+            {
+                StartPage selectGameFolder = new StartPage();
+                if (selectGameFolder.ShowDialog() == false)
+                {
+                    Application.Current.Shutdown();
+                }
+            }
         }
     }
 }

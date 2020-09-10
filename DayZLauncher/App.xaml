@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Style/ScrollBarStyle.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Style/TextBoxStyle.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Style/CheckBoxStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Style/ButtonStyle.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
