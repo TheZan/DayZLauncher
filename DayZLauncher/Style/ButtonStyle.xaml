@@ -7,7 +7,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid VerticalAlignment="Center">
-                            <Rectangle Name="BackRect" Width="80" VerticalAlignment="Center" Height="25" Fill="#2B233C"></Rectangle>
+                            <Rectangle Name="BackRect" VerticalAlignment="Center" Height="25" Fill="#2B233C"></Rectangle>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" ContentSource="Content"/>
                         </Grid>
                         <ControlTemplate.Triggers>

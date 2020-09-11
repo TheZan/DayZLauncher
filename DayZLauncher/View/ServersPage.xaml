@@ -17,15 +17,15 @@
             <TabItem Header="GGAMES">
                 <DataGrid IsReadOnly="True" GridLinesVisibility="None" RowHeaderWidth="0" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Servers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="NAME">
+                        <DataGridTemplateColumn Header="НАЗВАНИЕ">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center" Width="200" Text="{Binding name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Width="Auto" Header="MAP" Binding="{Binding map, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <DataGridTextColumn Width="100" Header="PLAYERS">
+                        <DataGridTextColumn Width="Auto" Header="КАРТА" Binding="{Binding map, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Width="100" Header="ИГРОКИ">
                             <DataGridTextColumn.Binding>
                                 <MultiBinding StringFormat="{} {0}/{1}">
                                     <Binding Path="players_cur" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
@@ -33,7 +33,7 @@
                                 </MultiBinding>
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Width="100" Header="STATUS" Binding="{Binding status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Width="100" Header="СТАТУС" Binding="{Binding status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <DataGridTemplateColumn Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -57,7 +57,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
-            <TabItem Header="OTHER SERVERS">
+            <TabItem IsHitTestVisible="False" Header="ДРУГИЕ СЕРВЕРА">
                 <TextBlock Text="Coming soon" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="30"/>
             </TabItem>
         </TabControl>

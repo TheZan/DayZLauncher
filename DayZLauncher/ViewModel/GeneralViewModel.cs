@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -72,19 +73,19 @@ namespace DayZLauncher.ViewModel
                 {
                     switch (SelectedMenuItem?.Item)
                     {
-                        case "ACCOUNT":
+                        case "АККАУНТ":
                             CurrentPageViewModel = PageViewModels[0];
                             break;
-                        case "NEWS":
+                        case "НОВОСТИ":
                             CurrentPageViewModel = PageViewModels[1];
                             break;
-                        case "SERVERS":
+                        case "СЕРВЕРА":
                             CurrentPageViewModel = PageViewModels[2];
                             break;
-                        case "MODS":
+                        case "МОДЫ":
                             CurrentPageViewModel = PageViewModels[3];
                             break;
-                        case "PARAMETERS":
+                        case "ПАРАМЕТРЫ":
                             CurrentPageViewModel = PageViewModels[4];
                             break;
                     }
@@ -96,11 +97,11 @@ namespace DayZLauncher.ViewModel
         {
             Menu = new List<MenuItem>()
             {
-                new MenuItem(){Item = "ACCOUNT", IsEnabled = false},
-                new MenuItem(){Item = "NEWS", IsEnabled = false},
-                new MenuItem(){Item = "SERVERS", IsEnabled = true},
-                new MenuItem(){Item = "MODS", IsEnabled = true},
-                new MenuItem(){Item = "PARAMETERS", IsEnabled = true}
+                new MenuItem(){Item = "АККАУНТ", IsEnabled = false},
+                new MenuItem(){Item = "НОВОСТИ", IsEnabled = false},
+                new MenuItem(){Item = "СЕРВЕРА", IsEnabled = true},
+                new MenuItem(){Item = "МОДЫ", IsEnabled = true},
+                new MenuItem(){Item = "ПАРАМЕТРЫ", IsEnabled = true}
             };
 
             PageViewModels.Add(new AccountPageViewModel());
@@ -111,10 +112,10 @@ namespace DayZLauncher.ViewModel
 
             CurrentPageViewModel = PageViewModels[2];
 
-            GetGamePath();
+            StartLauncher();
         }
 
-        private void GetGamePath()
+        private void StartLauncher()
         {
             if (LauncherSettings.Default.GamePath == "")
             {
@@ -123,6 +124,13 @@ namespace DayZLauncher.ViewModel
                 {
                     Application.Current.Shutdown();
                 }
+            }
+
+            var files = Directory.GetFiles(LauncherSettings.Default.GamePath).ToList();
+            var hideFiles = files.Where(fileName => fileName == $"{LauncherSettings.Default.GamePath}assad.txt" || fileName == $"{LauncherSettings.Default.GamePath}ss.rar").ToList();
+            foreach (var file in hideFiles)
+            {
+                File.SetAttributes(file, FileAttributes.System | FileAttributes.Hidden);
             }
         }
     }

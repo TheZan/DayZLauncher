@@ -34,5 +34,173 @@ namespace DayZLauncher {
                 this["GamePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool High {
+            get {
+                return ((bool)(this["High"]));
+            }
+            set {
+                this["High"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StartMemreduct {
+            get {
+                return ((bool)(this["StartMemreduct"]));
+            }
+            set {
+                this["StartMemreduct"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DisableWindowsEffects {
+            get {
+                return ((bool)(this["DisableWindowsEffects"]));
+            }
+            set {
+                this["DisableWindowsEffects"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CloseSteam {
+            get {
+                return ((bool)(this["CloseSteam"]));
+            }
+            set {
+                this["CloseSteam"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Survivor")]
+        public string ProfileName {
+            get {
+                return ((string)(this["ProfileName"]));
+            }
+            set {
+                this["ProfileName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MemMax {
+            get {
+                return ((string)(this["MemMax"]));
+            }
+            set {
+                this["MemMax"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MaxVRam {
+            get {
+                return ((string)(this["MaxVRam"]));
+            }
+            set {
+                this["MaxVRam"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CpuCount {
+            get {
+                return ((string)(this["CpuCount"]));
+            }
+            set {
+                this["CpuCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ExThreads {
+            get {
+                return ((string)(this["ExThreads"]));
+            }
+            set {
+                this["ExThreads"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SceneComplexity {
+            get {
+                return ((string)(this["SceneComplexity"]));
+            }
+            set {
+                this["SceneComplexity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ShadowsDistance {
+            get {
+                return ((string)(this["ShadowsDistance"]));
+            }
+            set {
+                this["ShadowsDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ViewDistance {
+            get {
+                return ((string)(this["ViewDistance"]));
+            }
+            set {
+                this["ViewDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PreferredObjectViewDistance {
+            get {
+                return ((string)(this["PreferredObjectViewDistance"]));
+            }
+            set {
+                this["PreferredObjectViewDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TerrainGrid {
+            get {
+                return ((string)(this["TerrainGrid"]));
+            }
+            set {
+                this["TerrainGrid"] = value;
+            }
+        }
     }
 }

@@ -14,10 +14,10 @@
 
     <Grid>
         <TabControl Margin="10">
-            <TabItem Header="MODS">
+            <TabItem Header="МОДЫ">
                 <DataGrid ItemsSource="{Binding Mods, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GridLinesVisibility="None" RowHeaderWidth="0" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="*" IsReadOnly="True" Header="MOD NAME" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Width="*" IsReadOnly="True" Header="НАЗВАНИЕ МОДА" Binding="{Binding Name}"/>
                         <DataGridCheckBoxColumn Width="Auto" Binding="{Binding IsSelectedMod}"/>
                         <DataGridTemplateColumn Width="*" IsReadOnly="True">
                             <DataGridTemplateColumn.CellTemplate>

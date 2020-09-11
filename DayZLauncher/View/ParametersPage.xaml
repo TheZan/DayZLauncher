@@ -14,7 +14,7 @@
 
     <Grid>
         <TabControl Margin="10">
-            <TabItem Header="MAIN">
+            <TabItem Header="ОСНОВНЫЕ">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25"/>
@@ -26,16 +26,16 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="0" Fill="#45326D"/>
-                    <TextBlock HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="PROFILE NAME:"/>
-                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Height="15" Width="200"/>
+                    <TextBlock HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="ИМЯ ПРОФИЛЯ:"/>
+                    <TextBox Text="{Binding ProfileName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Height="15" Width="200"/>
                     <Rectangle Grid.Column="0" Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="1" Fill="#45326D"/>
-                    <TextBlock HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="GAME PATH:"/>
+                    <TextBlock HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="ПУТЬ К ИГРЕ:"/>
                     <TextBox IsReadOnly="True" Text="{Binding GamePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Height="15" Width="200"/>
-                    <Button Command="{Binding SelectGamePathCommand}" Content="SELECT FOLDER" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
-                    <Button Content="SAVE SETTINGS" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
+                    <Button Width="90" Command="{Binding SelectGamePathCommand}" Content="ВЫБРАТЬ ПАПКУ" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
+                    <Button Width="130" Command="{Binding SaveSettingsCommand}" Content="СОХРАНИТЬ ПАРАМЕТРЫ" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="ADVANCED">
+            <TabItem Header="ДОПОЛНИТЕЛЬНЫЕ">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25"/>
@@ -60,51 +60,51 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="0" Fill="#45326D"/>
-                    <TextBlock Margin="5,0,0,0" Grid.Row="0" Text="START" VerticalAlignment="Center"/>
+                    <TextBlock Margin="5,0,0,0" Grid.Row="0" Text="ЗАПУСК" VerticalAlignment="Center"/>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="1" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="-MAXMEM:"/>
-                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding MaxMem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="2" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="-MAXVRAM:"/>
-                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding MaxVRam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="3" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="-CPUCOUNT:"/>
-                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding CpuCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="4" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="-EXTHREADS:"/>
-                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding ExThreads, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="5" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="-HIGH:"/>
-                    <CheckBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Height="15" Width="15"></CheckBox>
+                    <CheckBox IsChecked="{Binding High, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Height="15" Width="15"></CheckBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="6" Fill="#45326D"/>
-                    <TextBlock Margin="5,0,0,0" Grid.Row="6" Text="GAME" VerticalAlignment="Center"/>
+                    <TextBlock Margin="5,0,0,0" Grid.Row="6" Text="ИГРА" VerticalAlignment="Center"/>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="7" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="SCENECOMPLEXITY:"/>
-                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding SceneComplexity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="8" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="SHADOWSDISTANCE:"/>
-                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding ShadowsDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="9" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="VIEWDISTANCE:"/>
-                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding ViewDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="10" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="PREFERREDOBJECTVIEWDISTANCE:"/>
-                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding PreferredObjectViewDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="11" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="TERRAINGRID:"/>
-                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding TerrainGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="12" Fill="#45326D"/>
-                    <TextBlock Margin="5,0,0,0" Grid.Row="12" Text="OTHER" VerticalAlignment="Center"/>
+                    <TextBlock Margin="5,0,0,0" Grid.Row="12" Text="ДРУГОЕ" VerticalAlignment="Center"/>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="13" Fill="#45326D"/>
-                    <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="START MEMREDUCT WHEN GAME START:"/>
-                    <CheckBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="13" VerticalAlignment="Center" Height="15" Width="15"></CheckBox>
+                    <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="13" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="ЗАПУСКАТЬ MEMREDUCT ПРИ СТАРТЕ ИГРЫ:"/>
+                    <CheckBox IsChecked="{Binding StartMemreduct, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="13" VerticalAlignment="Center" Height="15" Width="15"></CheckBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="14" Fill="#45326D"/>
-                    <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="14" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="DISABLE WINDOWS EFFECTS:"/>
-                    <CheckBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="14" VerticalAlignment="Center" Height="15" Width="15"></CheckBox>
+                    <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="14" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="ОТКЛЮЧИТЬ ЭФФЕКТЫ WINDOWS:"/>
+                    <CheckBox IsChecked="{Binding DisableWindowsEffects, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="14" VerticalAlignment="Center" Height="15" Width="15"></CheckBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="15" Fill="#45326D"/>
-                    <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="15" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="CLOSE STEAM WHEN GAME START:"/>
-                    <CheckBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="15" VerticalAlignment="Center" Height="15" Width="15"></CheckBox>
-                    <Button Content="SAVE SETTINGS" Margin="5" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="15"/>
+                    <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="15" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="ЗАКРЫТЬ STEAM ПРИ СТАРТЕ ИГРЫ:"/>
+                    <CheckBox IsChecked="{Binding CloseSteam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="15" VerticalAlignment="Center" Height="15" Width="15"></CheckBox>
+                    <Button Width="130" Command="{Binding SaveSettingsCommand}" Content="СОХРАНИТЬ ПАРАМЕТРЫ" Margin="0,1,0,1"  HorizontalAlignment="Right" Grid.Column="1" Grid.Row="15"/>
                 </Grid>
             </TabItem>
         </TabControl>
