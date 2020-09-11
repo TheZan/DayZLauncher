@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,8 +34,10 @@ namespace DayZLauncher.View
                 gamePath = open.FileName.TrimEnd(new char[]
                     {'D', 'a', 'y', 'Z', '_', 'x', '6', '4', '.', 'e', 'x', 'e'});
                 LauncherSettings.Default.GamePath = gamePath;
+                LauncherSettings.Default.ProfileName = "Survivor";
                 LauncherSettings.Default.Save();
                 GamePathTextBox.Text = gamePath;
+                SetParameter("-name=", " ", LauncherSettings.Default.ProfileName);
             }
             else
             {
@@ -46,7 +49,35 @@ namespace DayZLauncher.View
         {
             if (gamePath != "")
             {
+                CreateSettingsProfile();
+
                 DialogResult = true;
+            }
+        }
+
+        private void CreateSettingsProfile()
+        {
+            var myDocuments = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}";
+
+            if (!Directory.Exists(@$"{myDocuments}\DayZ"))
+            {
+                Directory.CreateDirectory(@$"{myDocuments}\DayZ");
+
+                using (FileStream fs = File.Create(@$"{myDocuments}\DayZ\{LauncherSettings.Default.ProfileName}_settings.DayZProfile"))
+                {
+                    var text = LauncherSettings.Default.DayZSettings;
+                    byte[] array = System.Text.Encoding.Default.GetBytes(text);
+                    fs.Write(array, 0, array.Length);
+                }
+            }
+            else
+            {
+                using (FileStream fs = File.Create(@$"{myDocuments}\DayZ\{LauncherSettings.Default.ProfileName}_settings.DayZProfile"))
+                {
+                    var text = LauncherSettings.Default.DayZSettings;
+                    byte[] array = System.Text.Encoding.Default.GetBytes(text);
+                    fs.Write(array, 0, array.Length);
+                }
             }
         }
 
@@ -63,6 +94,40 @@ namespace DayZLauncher.View
         private void ExitButton_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DialogResult = false;
+        }
+
+        private void SetParameter(string strStart, string strEnd, string newChar)
+        {
+            var settingsIni = new List<string>();
+
+            using (StreamReader reader = new StreamReader($"{LauncherSettings.Default.GamePath}!StartGame.ini"))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    settingsIni.Add(line);
+                }
+            }
+
+            using (StreamWriter writer = new StreamWriter($"{LauncherSettings.Default.GamePath}!StartGame.ini"))
+            {
+                if (settingsIni[3].Contains(strStart) && settingsIni[3].Contains(strEnd))
+                {
+                    string line = settingsIni[3];
+                    int Start, End;
+                    Start = line.IndexOf(strStart, 0) + strStart.Length;
+                    End = line.IndexOf(strEnd, Start);
+
+                    settingsIni[3] = line.Remove(Start, End - Start).Insert(Start, newChar);
+                }
+
+                foreach (var line in settingsIni)
+                {
+                    writer.WriteLine(line);
+                }
+
+                writer.Close();
+            }
         }
     }
 }

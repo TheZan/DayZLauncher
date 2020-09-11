@@ -158,12 +158,12 @@ namespace DayZLauncher {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ShadowsDistance {
+        public string ShadowZDistance {
             get {
-                return ((string)(this["ShadowsDistance"]));
+                return ((string)(this["ShadowZDistance"]));
             }
             set {
-                this["ShadowsDistance"] = value;
+                this["ShadowZDistance"] = value;
             }
         }
         
@@ -200,6 +200,59 @@ namespace DayZLauncher {
             }
             set {
                 this["TerrainGrid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"version=1;
+blood=1;
+singleVoice=0;
+gamma=1;
+battleyeLicense=1;
+lastMPServer=""5.188.158.148:150863872"";
+lastMPServerName=""GGAMES DayZ 1.08 Moded | Autumn server 1"";
+lastMPMission=""ChernarusPlusGloom"";
+inputVersion=1;
+perspective=1;
+trackIR=1;
+freeTrack=1;
+mouseSmoothing=30;
+maxSamplesPlayed=32;
+TexQuality=4;
+tripleHead=0;
+showTitles=1;
+vehicleFreelook=0;
+shadowQuality=2;
+mouseSensitivityX=1;
+mouseSensitivityY=1;
+controllerSensitivityX=1;
+controllerSensitivityY=1;
+volumeMaster=10;
+volumeCD=0;
+volumeFX=5;
+volumeSpeech=5;
+volumeVoN=10;
+vonRecThreshold=0.029999999;
+brightness=1;
+uiTopLeftX=0.12500001;
+uiTopLeftY=0;
+uiBottomRightX=0.875;
+uiBottomRightY=1;
+IGUIScale=0.55000001;
+headBob=1;
+sceneComplexity=750000;
+shadowZDistance=175;
+viewDistance=2200;
+preferredObjectViewDistance=1375.8242;
+terrainGrid=3.125;
+fov=0.95993;")]
+        public string DayZSettings {
+            get {
+                return ((string)(this["DayZSettings"]));
+            }
+            set {
+                this["DayZSettings"] = value;
             }
         }
     }

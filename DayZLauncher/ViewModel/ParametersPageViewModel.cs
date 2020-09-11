@@ -249,20 +249,29 @@ namespace DayZLauncher.ViewModel
             SetHigh();
 
             LauncherSettings.Default.ProfileName = ProfileName;
+            CreateSettingsProfile();
             LauncherSettings.Default.MemMax = MaxMem;
             LauncherSettings.Default.MaxVRam = MaxVRam;
             LauncherSettings.Default.CpuCount = CpuCount;
             LauncherSettings.Default.ExThreads = ExThreads;
             LauncherSettings.Default.High = High;
 
+            SetParameterFromDayZProfile("sceneComplexity=", ";", SceneComplexity);
+            SetParameterFromDayZProfile("shadowZDistance=", ";", ShadowsDistance);
+            SetParameterFromDayZProfile("viewDistance=", ";", ViewDistance);
+            SetParameterFromDayZProfile("preferredObjectViewDistance=", ";", PreferredObjectViewDistance);
+            SetParameterFromDayZProfile("terrainGrid=", ";", TerrainGrid);
+
             LauncherSettings.Default.SceneComplexity = SceneComplexity;
-            LauncherSettings.Default.ShadowsDistance = ShadowsDistance;
+            LauncherSettings.Default.ShadowZDistance = ShadowsDistance;
             LauncherSettings.Default.ViewDistance = ViewDistance;
             LauncherSettings.Default.PreferredObjectViewDistance = PreferredObjectViewDistance;
             LauncherSettings.Default.TerrainGrid = TerrainGrid;
+
             LauncherSettings.Default.StartMemreduct = StartMemreduct;
             LauncherSettings.Default.DisableWindowsEffects = DisableWindowsEffects;
             LauncherSettings.Default.CloseSteam = CloseSteam;
+
             LauncherSettings.Default.Save();
         }
 
@@ -347,6 +356,62 @@ namespace DayZLauncher.ViewModel
             }
         }
 
+        private void SetParameterFromDayZProfile(string strStart, string strEnd, string newChar)
+        {
+            string input = "";
+
+            string mySettings =
+                @$"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\DayZ\{ProfileName}_settings.DayZProfile";
+
+            using (StreamReader readerTwo = new StreamReader(mySettings))
+            {
+                input = readerTwo.ReadToEnd();
+            }
+
+            using (StreamWriter writer = new StreamWriter(mySettings))
+            {
+                if (input.Contains(strStart) && input.Contains(strEnd))
+                {
+                    string line = input;
+                    int Start, End;
+                    Start = line.IndexOf(strStart, 0) + strStart.Length;
+                    End = line.IndexOf(strEnd, Start);
+
+                    input = line.Remove(Start, End - Start).Insert(Start, newChar);
+
+                    writer.Write(input);
+
+                    writer.Close();
+                }
+            }
+        }
+
+        private void CreateSettingsProfile()
+        {
+            var myDocuments = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}";
+
+            if (!Directory.Exists(@$"{myDocuments}\DayZ"))
+            {
+                Directory.CreateDirectory(@$"{myDocuments}\DayZ");
+
+                using (FileStream fs = File.Create(@$"{myDocuments}\DayZ\{LauncherSettings.Default.ProfileName}_settings.DayZProfile"))
+                {
+                    var text = LauncherSettings.Default.DayZSettings;
+                    byte[] array = System.Text.Encoding.Default.GetBytes(text);
+                    fs.Write(array, 0, array.Length);
+                }
+            }
+            else
+            {
+                using (FileStream fs = File.Create(@$"{myDocuments}\DayZ\{LauncherSettings.Default.ProfileName}_settings.DayZProfile"))
+                {
+                    var text = LauncherSettings.Default.DayZSettings;
+                    byte[] array = System.Text.Encoding.Default.GetBytes(text);
+                    fs.Write(array, 0, array.Length);
+                }
+            }
+        }
+
         private void SetParameter(string strStart, string strEnd, string newChar)
         {
             settingsIni = new List<string>();
@@ -362,21 +427,19 @@ namespace DayZLauncher.ViewModel
 
             using (StreamWriter writer = new StreamWriter($"{LauncherSettings.Default.GamePath}!StartGame.ini"))
             {
+                if (settingsIni[3].Contains(strStart) && settingsIni[3].Contains(strEnd))
                 {
-                    if (settingsIni[3].Contains(strStart) && settingsIni[3].Contains(strEnd))
-                    {
-                        string line = settingsIni[3];
-                        int Start, End;
-                        Start = line.IndexOf(strStart, 0) + strStart.Length;
-                        End = line.IndexOf(strEnd, Start);
+                    string line = settingsIni[3];
+                    int Start, End;
+                    Start = line.IndexOf(strStart, 0) + strStart.Length;
+                    End = line.IndexOf(strEnd, Start);
 
-                        settingsIni[3] = line.Remove(Start, End - Start).Insert(Start, newChar);
-                    }
+                    settingsIni[3] = line.Remove(Start, End - Start).Insert(Start, newChar);
+                }
 
-                    foreach (var line in settingsIni)
-                    {
-                        writer.WriteLine(line);
-                    }
+                foreach (var line in settingsIni)
+                {
+                    writer.WriteLine(line);
                 }
 
                 writer.Close();
@@ -397,12 +460,33 @@ namespace DayZLauncher.ViewModel
                     LauncherSettings.Default.CpuCount = GetParameter(input, "-cpuCount=", " ");
                     LauncherSettings.Default.ExThreads = GetParameter(input, "-exThreads=", " ");
                     LauncherSettings.Default.High = GetHigh();
-                    //LauncherSettings.Default.High = High;
-                    //LauncherSettings.Default.SceneComplexity = SceneComplexity;
-                    //LauncherSettings.Default.ShadowsDistance = ShadowsDistance;
-                    //LauncherSettings.Default.ViewDistance = ViewDistance;
-                    //LauncherSettings.Default.PreferredObjectViewDistance = PreferredObjectViewDistance;
-                    //LauncherSettings.Default.TerrainGrid = TerrainGrid;
+
+                    string mySettings =
+                        @$"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\DayZ\{LauncherSettings.Default.ProfileName}_settings.DayZProfile";
+
+                    var files = Directory.GetFiles(
+                        @$"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\DayZ");
+
+                    var isAvailable = files.Any(p =>
+                        p.Contains($"{LauncherSettings.Default.ProfileName}_settings.DayZProfile"));
+
+                    if (!isAvailable)
+                    {
+                        CreateSettingsProfile();
+                    }
+
+                    using (StreamReader readerTwo = new StreamReader(mySettings))
+                    {
+                        string inputTwo = readerTwo.ReadToEnd();
+
+                        LauncherSettings.Default.SceneComplexity = GetParameter(inputTwo, "sceneComplexity=", ";");
+                        LauncherSettings.Default.ShadowZDistance = GetParameter(inputTwo, "shadowZDistance=", ";");
+                        LauncherSettings.Default.ViewDistance = GetParameter(inputTwo, "viewDistance=", ";");
+                        LauncherSettings.Default.PreferredObjectViewDistance =
+                            GetParameter(inputTwo, "preferredObjectViewDistance=", ";");
+                        LauncherSettings.Default.TerrainGrid = GetParameter(inputTwo, "terrainGrid=", ";");
+                    }
+
                     LauncherSettings.Default.Save();
                 }
             }
@@ -415,7 +499,7 @@ namespace DayZLauncher.ViewModel
             ExThreads = LauncherSettings.Default.ExThreads;
             High = LauncherSettings.Default.High;
             SceneComplexity = LauncherSettings.Default.SceneComplexity;
-            ShadowsDistance = LauncherSettings.Default.ShadowsDistance;
+            ShadowsDistance = LauncherSettings.Default.ShadowZDistance;
             ViewDistance = LauncherSettings.Default.ViewDistance;
             PreferredObjectViewDistance = LauncherSettings.Default.PreferredObjectViewDistance;
             TerrainGrid = LauncherSettings.Default.TerrainGrid;

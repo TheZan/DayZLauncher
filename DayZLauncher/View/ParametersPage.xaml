@@ -82,7 +82,7 @@
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="SCENECOMPLEXITY:"/>
                     <TextBox Text="{Binding SceneComplexity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="8" Fill="#45326D"/>
-                    <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="SHADOWSDISTANCE:"/>
+                    <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="SHADOWZDISTANCE:"/>
                     <TextBox Text="{Binding ShadowsDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="9" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="VIEWDISTANCE:"/>
