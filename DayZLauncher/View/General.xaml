@@ -163,7 +163,27 @@
         </Grid>
 
         <Grid Background="Transparent" Name="TopPanel" PreviewMouseLeftButtonDown="TopPanel_OnPreviewMouseLeftButtonDown" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
-            <Image Name="PowerButton" HorizontalAlignment="Right" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Name="MinimizeButton" Grid.Column="1" Margin="0,5,0,5">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="../Resource/minimize1.png"/>
+                        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="EventSetter_OnHandler2"></EventSetter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinimizeButton}" 
+                                         Value="True">
+                                <Setter Property="Source" Value="../Resource/minimize2.png"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+
+            <Image Name="PowerButton" Grid.Column="2" Margin="10">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property="Source" Value="../Resource/POWER1.png"/>

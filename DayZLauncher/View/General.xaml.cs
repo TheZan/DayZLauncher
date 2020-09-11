@@ -34,5 +34,10 @@ namespace DayZLauncher.View
         {
             Application.Current.Shutdown();
         }
+
+        private void EventSetter_OnHandler2(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
     }
 }

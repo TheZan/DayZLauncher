@@ -13,6 +13,8 @@
     <None Remove="Resource\back.png" />
     <None Remove="Resource\discord1.png" />
     <None Remove="Resource\discord2.png" />
+    <None Remove="Resource\minimize1.png" />
+    <None Remove="Resource\minimize2.png" />
     <None Remove="Resource\POWER1.png" />
     <None Remove="Resource\POWER2.png" />
     <None Remove="Resource\Roboto-Black.ttf" />
@@ -32,6 +34,8 @@
     <Resource Include="Resource\back.png" />
     <Resource Include="Resource\discord1.png" />
     <Resource Include="Resource\discord2.png" />
+    <Resource Include="Resource\minimize1.png" />
+    <Resource Include="Resource\minimize2.png" />
     <Resource Include="Resource\POWER1.png" />
     <Resource Include="Resource\POWER2.png" />
     <Resource Include="Resource\Roboto-Black.ttf" />
