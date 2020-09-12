@@ -235,7 +235,7 @@ namespace DayZLauncher.ViewModel
             }
             else
             {
-                MessageBox.Show("Wrong folder!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Неверная папка!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -518,11 +518,16 @@ namespace DayZLauncher.ViewModel
 
         private void ShowOrHideFiles(FileAttributes attributes, FileAttributes fileAttributes)
         {
-            var files = Directory.GetFiles(LauncherSettings.Default.GamePath).ToList();
-            var hideFiles = files.Where(fileName => fileName == $"{LauncherSettings.Default.GamePath}!start_game.bat" || fileName == $"{LauncherSettings.Default.GamePath}!StartGame.ini").ToList();
-            foreach (var file in hideFiles)
+            if (LauncherSettings.Default.GamePath != "")
             {
-                File.SetAttributes(file, fileAttributes | attributes);
+                var files = Directory.GetFiles(LauncherSettings.Default.GamePath).ToList();
+                var hideFiles = files.Where(fileName =>
+                    fileName == $"{LauncherSettings.Default.GamePath}!start_game.bat" ||
+                    fileName == $"{LauncherSettings.Default.GamePath}!StartGame.ini").ToList();
+                foreach (var file in hideFiles)
+                {
+                    File.SetAttributes(file, fileAttributes | attributes);
+                }
             }
         }
     }

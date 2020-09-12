@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,11 +38,13 @@ namespace DayZLauncher.View
                 LauncherSettings.Default.ProfileName = "Survivor";
                 LauncherSettings.Default.Save();
                 GamePathTextBox.Text = gamePath;
+                ShowOrHideFiles(FileAttributes.Normal, FileAttributes.Normal);
                 SetParameter("-name=", " ", LauncherSettings.Default.ProfileName);
+                ShowOrHideFiles(FileAttributes.Hidden, FileAttributes.System);
             }
             else
             {
-                MessageBox.Show("Wrong folder!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Неверная папка!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -127,6 +130,21 @@ namespace DayZLauncher.View
                 }
 
                 writer.Close();
+            }
+        }
+
+        private void ShowOrHideFiles(FileAttributes attributes, FileAttributes fileAttributes)
+        {
+            if (LauncherSettings.Default.GamePath != "")
+            {
+                var files = Directory.GetFiles(LauncherSettings.Default.GamePath).ToList();
+                var hideFiles = files.Where(fileName =>
+                    fileName == $"{LauncherSettings.Default.GamePath}!start_game.bat" ||
+                    fileName == $"{LauncherSettings.Default.GamePath}!StartGame.ini").ToList();
+                foreach (var file in hideFiles)
+                {
+                    File.SetAttributes(file, fileAttributes | attributes);
+                }
             }
         }
     }

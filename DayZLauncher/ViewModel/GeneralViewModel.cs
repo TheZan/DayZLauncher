@@ -117,6 +117,8 @@ namespace DayZLauncher.ViewModel
 
         private void StartLauncher()
         {
+            ShowOrHideFiles(FileAttributes.Normal, FileAttributes.Normal);
+
             if (LauncherSettings.Default.GamePath == "")
             {
                 StartPage selectGameFolder = new StartPage();
@@ -126,16 +128,21 @@ namespace DayZLauncher.ViewModel
                 }
             }
 
-            ShowOrHideFiles(FileAttributes.Hidden);
+            ShowOrHideFiles(FileAttributes.Hidden, FileAttributes.System);
         }
 
-        private void ShowOrHideFiles(FileAttributes attributes)
+        private void ShowOrHideFiles(FileAttributes attributes, FileAttributes fileAttributes)
         {
-            var files = Directory.GetFiles(LauncherSettings.Default.GamePath).ToList();
-            var hideFiles = files.Where(fileName => fileName == $"{LauncherSettings.Default.GamePath}!start_game.bat" || fileName == $"{LauncherSettings.Default.GamePath}!StartGame.ini").ToList();
-            foreach (var file in hideFiles)
+            if (LauncherSettings.Default.GamePath != "")
             {
-                File.SetAttributes(file, FileAttributes.System | attributes);
+                var files = Directory.GetFiles(LauncherSettings.Default.GamePath).ToList();
+                var hideFiles = files.Where(fileName =>
+                    fileName == $"{LauncherSettings.Default.GamePath}!start_game.bat" ||
+                    fileName == $"{LauncherSettings.Default.GamePath}!StartGame.ini").ToList();
+                foreach (var file in hideFiles)
+                {
+                    File.SetAttributes(file, fileAttributes | attributes);
+                }
             }
         }
     }
