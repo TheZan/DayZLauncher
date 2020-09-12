@@ -5,5 +5,7 @@
         <Setter Property="Background" Value="#2B233C"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="ToolTipService.InitialShowDelay" Value="100"/>
+        <Setter Property="ToolTipService.ShowDuration" Value="20000"/>
     </Style>
 </ResourceDictionary>

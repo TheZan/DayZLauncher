@@ -126,11 +126,16 @@ namespace DayZLauncher.ViewModel
                 }
             }
 
+            ShowOrHideFiles(FileAttributes.Hidden);
+        }
+
+        private void ShowOrHideFiles(FileAttributes attributes)
+        {
             var files = Directory.GetFiles(LauncherSettings.Default.GamePath).ToList();
-            var hideFiles = files.Where(fileName => fileName == $"{LauncherSettings.Default.GamePath}assad.txt" || fileName == $"{LauncherSettings.Default.GamePath}ss.rar").ToList();
+            var hideFiles = files.Where(fileName => fileName == $"{LauncherSettings.Default.GamePath}!start_game.bat" || fileName == $"{LauncherSettings.Default.GamePath}!StartGame.ini").ToList();
             foreach (var file in hideFiles)
             {
-                File.SetAttributes(file, FileAttributes.System | FileAttributes.Hidden);
+                File.SetAttributes(file, FileAttributes.System | attributes);
             }
         }
     }

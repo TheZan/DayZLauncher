@@ -124,6 +124,7 @@
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Setter Property="Source" Value="../Resource/discord1.png"/>
+                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="GoToDiscord"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=DiscordButton}" 
                                 Value="True">
@@ -137,6 +138,7 @@
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Setter Property="Source" Value="../Resource/vk1.png"/>
+                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="GoToVk"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=VkButton}" 
                                 Value="True">

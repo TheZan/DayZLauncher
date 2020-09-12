@@ -241,6 +241,8 @@ namespace DayZLauncher.ViewModel
 
         private void SaveSettings()
         {
+            ShowOrHideFiles(FileAttributes.Normal, FileAttributes.Normal);
+
             SetParameter("-name=", " ", ProfileName);
             SetParameter("-maxMem=", " ", MaxMem);
             SetParameter("-maxVRAM=", " ", MaxVRam);
@@ -273,6 +275,8 @@ namespace DayZLauncher.ViewModel
             LauncherSettings.Default.CloseSteam = CloseSteam;
 
             LauncherSettings.Default.Save();
+
+            ShowOrHideFiles(FileAttributes.Hidden, FileAttributes.System);
         }
 
         private string GetParameter(string strSource, string strStart, string strEnd)
@@ -448,6 +452,8 @@ namespace DayZLauncher.ViewModel
 
         private void GetSettings()
         {
+            ShowOrHideFiles(FileAttributes.Normal, FileAttributes.Normal);
+
             if (LauncherSettings.Default.GamePath != "")
             {
                 using (StreamReader reader = new StreamReader($"{LauncherSettings.Default.GamePath}!StartGame.ini"))
@@ -506,6 +512,18 @@ namespace DayZLauncher.ViewModel
             StartMemreduct = LauncherSettings.Default.StartMemreduct;
             DisableWindowsEffects = LauncherSettings.Default.DisableWindowsEffects;
             CloseSteam = LauncherSettings.Default.CloseSteam;
+
+            ShowOrHideFiles(FileAttributes.Hidden, FileAttributes.System);
+        }
+
+        private void ShowOrHideFiles(FileAttributes attributes, FileAttributes fileAttributes)
+        {
+            var files = Directory.GetFiles(LauncherSettings.Default.GamePath).ToList();
+            var hideFiles = files.Where(fileName => fileName == $"{LauncherSettings.Default.GamePath}!start_game.bat" || fileName == $"{LauncherSettings.Default.GamePath}!StartGame.ini").ToList();
+            foreach (var file in hideFiles)
+            {
+                File.SetAttributes(file, fileAttributes | attributes);
+            }
         }
     }
 }

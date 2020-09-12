@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,16 @@ namespace DayZLauncher.View
         private void EventSetter_OnHandler2(object sender, MouseButtonEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void GoToDiscord(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("explorer.exe", "https://discord.gg/VETwBNG");
+        }
+
+        private void GoToVk(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("explorer.exe", "https://vk.com/dayzggames");
         }
     }
 }

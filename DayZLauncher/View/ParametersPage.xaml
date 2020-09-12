@@ -63,36 +63,76 @@
                     <TextBlock Margin="5,0,0,0" Grid.Row="0" Text="ЗАПУСК" VerticalAlignment="Center"/>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="1" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="-MAXMEM:"/>
-                    <TextBox Text="{Binding MaxMem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding MaxMem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Height="15" Width="100">
+                        <TextBox.ToolTip>
+                            <TextBlock MaxWidth="300" TextWrapping="Wrap" Text="-MAXMEM - количество оперативной памяти в мегабайтах."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="2" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="-MAXVRAM:"/>
-                    <TextBox Text="{Binding MaxVRam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding MaxVRam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="15" Width="100">
+                        <TextBox.ToolTip>
+                            <TextBlock MaxWidth="300" TextWrapping="Wrap" Text="-MAXVRAM - количество видеопамяти в мегабайтах."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="3" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="-CPUCOUNT:"/>
-                    <TextBox Text="{Binding CpuCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding CpuCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Height="15" Width="100">
+                        <TextBox.ToolTip>
+                            <TextBlock MaxWidth="300" TextWrapping="Wrap" Text="-CPUCOUNT - количество ядер процессора."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="4" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="-EXTHREADS:"/>
-                    <TextBox Text="{Binding ExThreads, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding ExThreads, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Height="15" Width="100">
+                        <TextBox.ToolTip>
+                            <TextBlock MaxWidth="300" TextWrapping="Wrap" Text="-EXTHREADS - количество потоков процессора."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="5" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="-HIGH:"/>
-                    <CheckBox IsChecked="{Binding High, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Height="15" Width="15"></CheckBox>
+                    <CheckBox IsChecked="{Binding High, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Height="15" Width="15">
+                        <CheckBox.ToolTip>
+                            <TextBlock MaxWidth="300" TextWrapping="Wrap" Text="Запускает игру с высоким приоритетом."/>
+                        </CheckBox.ToolTip>
+                    </CheckBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="6" Fill="#45326D"/>
                     <TextBlock Margin="5,0,0,0" Grid.Row="6" Text="ИГРА" VerticalAlignment="Center"/>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="7" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="SCENECOMPLEXITY:"/>
-                    <TextBox Text="{Binding SceneComplexity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding SceneComplexity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Height="15" Width="100">
+                        <TextBox.ToolTip>
+                            <TextBlock MaxWidth="300" TextWrapping="Wrap" Text="SCENECOMPLEXITY - количество объектов в сцене."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="8" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="SHADOWZDISTANCE:"/>
-                    <TextBox Text="{Binding ShadowsDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding ShadowsDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Height="15" Width="100">
+                        <TextBox.ToolTip>
+                            <TextBlock MaxWidth="300" TextWrapping="Wrap" Text="SHADOWZDISTANCE - дальность прорисовки теней."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="9" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="VIEWDISTANCE:"/>
-                    <TextBox Text="{Binding ViewDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding ViewDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center" Height="15" Width="100">
+                        <TextBox.ToolTip>
+                            <TextBlock MaxWidth="300" TextWrapping="Wrap" Text="VIEWDISTANCE - дальность прорисовки локации."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="10" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="10" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="PREFERREDOBJECTVIEWDISTANCE:"/>
-                    <TextBox Text="{Binding PreferredObjectViewDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding PreferredObjectViewDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" Height="15" Width="100">
+                        <TextBox.ToolTip>
+                            <TextBlock MaxWidth="300" TextWrapping="Wrap" Text="PREFERREDOBJECTVIEWDISTANCE - дальность прорисовки объектов."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="11" Fill="#45326D"/>
                     <TextBlock Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="11" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14" Text="TERRAINGRID:"/>
-                    <TextBox Text="{Binding TerrainGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" Height="15" Width="100"></TextBox>
+                    <TextBox Text="{Binding TerrainGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" Height="15" Width="100">
+                        <TextBox.ToolTip>
+                            <TextBlock MaxWidth="300" TextWrapping="Wrap" Text="TERRAINGRID - дальность и качество прорисовки травы."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="12" Fill="#45326D"/>
                     <TextBlock Margin="5,0,0,0" Grid.Row="12" Text="ДРУГОЕ" VerticalAlignment="Center"/>
                     <Rectangle Grid.ColumnSpan="2" Stroke="#FFFFFF" StrokeThickness="0.2" Grid.Row="13" Fill="#45326D"/>

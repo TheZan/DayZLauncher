@@ -4,6 +4,8 @@
         <Setter Property="Foreground" Value="#FFFFFF"/>
         <Setter Property="Background" Value="#2B233C"/>
         <Setter Property="BorderBrush" Value="#603F9E"/>
+        <Setter Property="ToolTipService.InitialShowDelay" Value="100"/>
+        <Setter Property="ToolTipService.ShowDuration" Value="20000"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
