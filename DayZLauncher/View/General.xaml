@@ -8,6 +8,7 @@
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewModel="clr-namespace:DayZLauncher.ViewModel"
         mc:Ignorable="d"
+        Activated="General_OnActivated"
         Title="GGAMES" Height="500" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
 
     <Window.Resources>

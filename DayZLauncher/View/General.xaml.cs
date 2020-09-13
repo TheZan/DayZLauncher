@@ -50,5 +50,14 @@ namespace DayZLauncher.View
         {
             Process.Start("explorer.exe", "https://vk.com/dayzggames");
         }
+
+        private void General_OnActivated(object? sender, EventArgs e)
+        {
+            Window window = Application.Current.Windows.OfType<General>().FirstOrDefault(p => p != this && !p.IsActive && p.OwnedWindows.Count > 0);
+            if (window != null)
+            {
+                window.Activate();
+            }
+        }
     }
 }

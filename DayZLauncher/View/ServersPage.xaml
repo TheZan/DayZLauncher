@@ -15,7 +15,7 @@
     <Grid>
         <TabControl Margin="10">
             <TabItem Header="GGAMES">
-                <DataGrid IsReadOnly="True" GridLinesVisibility="None" RowHeaderWidth="0" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Servers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid SelectedItem="{Binding SelectedServer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" GridLinesVisibility="None" RowHeaderWidth="0" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Servers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="НАЗВАНИЕ">
                             <DataGridTemplateColumn.CellTemplate>
@@ -37,7 +37,7 @@
                         <DataGridTemplateColumn Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button>
+                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.ConnectToServerCommand}">
                                         <Button.Template>
                                             <ControlTemplate TargetType="{x:Type Button}">
                                                 <Grid>

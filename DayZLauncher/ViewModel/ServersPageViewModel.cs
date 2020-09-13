@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using DayZLauncher.View;
 
 namespace DayZLauncher.ViewModel
 {
@@ -14,6 +16,7 @@ namespace DayZLauncher.ViewModel
     {
         public ServersPageViewModel()
         {
+            SelectedServer = new Server();
             Servers = ServersMonitoring.GetServersInfo();
             Task.Run(RefreshMonitoring);
         }
@@ -27,6 +30,20 @@ namespace DayZLauncher.ViewModel
             }
         }
 
+        private StartGame startGame;
+
+        private Server selectedServer;
+
+        public Server SelectedServer
+        {
+            get => selectedServer;
+            set
+            {
+                selectedServer = value;
+                OnPropertyChanged("SelectedServer");
+            }
+        }
+
         private ObservableCollection<Server> servers;
 
         public ObservableCollection<Server> Servers
@@ -36,6 +53,23 @@ namespace DayZLauncher.ViewModel
             {
                 servers = value;
                 OnPropertyChanged("Servers");
+            }
+        }
+
+        private RelayCommand connectToServerCommand;
+        public RelayCommand ConnectToServerCommand
+        {
+            get
+            {
+                return connectToServerCommand ??= new RelayCommand(obj =>
+                {
+                    startGame = new StartGame()
+                    {
+                        ShowInTaskbar = false,
+                        Owner = Application.Current.MainWindow
+                    };
+                    startGame.ShowDialog();
+                });
             }
         }
     }

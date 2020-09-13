@@ -20,11 +20,11 @@ namespace DayZLauncher.Utility
                 Directory.CreateDirectory(modsFolder);
         }
 
-        public delegate void CheckerHandler(string message);
+        public delegate void CheckerHandler(string message, bool progress);
 
         public event CheckerHandler Notify;
 
-        public delegate void DownloadHandler(double current, double maximum);
+        public delegate void DownloadHandler(int current, int maximum, bool progress);
 
         public event DownloadHandler DownloadStatus;
 
@@ -52,13 +52,13 @@ namespace DayZLauncher.Utility
                 if (clientHashes[i].FileName != serverHashes[i].FileName || clientHashes[i].Hash != serverHashes[i].Hash)
                 {
                     failedClientHashes.Add(clientHashes[i]);
-                    Notify?.Invoke($"Файл - {clientHashes[i].FileName} не прошел проверку.");
+                    Notify?.Invoke($"Файл - {clientHashes[i].FileName} не прошел проверку.", true);
                 }
             }
 
             if (failedClientHashes.Any())
             {
-                Notify?.Invoke($"Начало загрузки файлов.");
+                Notify?.Invoke($"Начало загрузки файлов.", true);
 
                 int fileNumber = 0;
 
@@ -66,15 +66,15 @@ namespace DayZLauncher.Utility
                 {
                     fileNumber++;
 
-                    Notify?.Invoke($"Загрузка - {file.FileName} | {fileNumber}/{failedClientHashes.Count}");
+                    Notify?.Invoke($"Загрузка - {file.FileName} | {fileNumber}/{failedClientHashes.Count}", true);
                     DownloadFileFromFtp(file.FileName);
                 }
 
-                Notify?.Invoke("Загрузка завершена. Все файлы успешно прошли проверку.");
+                Notify?.Invoke("Загрузка завершена. Все файлы успешно прошли проверку.", true);
             }
             else
             {
-                Notify?.Invoke("Все файлы успешно прошли проверку.");
+                Notify?.Invoke("Все файлы успешно прошли проверку.", true);
             }
         }
 
@@ -82,7 +82,7 @@ namespace DayZLauncher.Utility
         {
             WebRequest sizeRequest = WebRequest.Create($"{ftpUrl}/{file}");
             sizeRequest.Method = WebRequestMethods.Ftp.GetFileSize;
-            double fileSize = sizeRequest.GetResponse().ContentLength / 1000000.0;
+            int fileSize = (int) sizeRequest.GetResponse().ContentLength / 1000;
 
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create($"{ftpUrl}/{file}");
             request.Method = WebRequestMethods.Ftp.DownloadFile;
@@ -105,8 +105,8 @@ namespace DayZLauncher.Utility
                         while ((size = responseStream.Read(buffer, 0, buffer.Length)) > 0)
                         {
                             fs.Write(buffer, 0, size);
-                            double position = fs.Position / 1000000.0;
-                            DownloadStatus?.Invoke(Math.Round(position, 1), Math.Round(fileSize, 1));
+                            int position = (int) fs.Position / 1000;
+                            DownloadStatus?.Invoke(position, fileSize, false);
                         }
                     }
                 }
@@ -115,6 +115,8 @@ namespace DayZLauncher.Utility
 
         private void GetServerHashes()
         {
+            Notify?.Invoke("Начало проверки.", true);
+
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create($"{ftpUrl}/{md5HashFileName}");
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             FtpWebResponse response = (FtpWebResponse)request.GetResponse();
@@ -136,7 +138,7 @@ namespace DayZLauncher.Utility
 
             if (DirSearch(modsFolder).Any())
             {
-                Notify?.Invoke($"Начало проверки файлов.");
+                Notify?.Invoke($"Начало проверки файлов.", true);
 
                 int fileNumber = 0;
 
@@ -152,25 +154,25 @@ namespace DayZLauncher.Utility
 
                     fileNumber++;
 
-                    Notify?.Invoke($"Прогресс {fileNumber}/{serverHashes.Count}");
+                    Notify?.Invoke($"{fileNumber}/{serverHashes.Count}", false);
                 }
             }
             else
             {
-                Notify?.Invoke($"Моды не найдены");
+                Notify?.Invoke($"Моды не найдены", true);
 
-                Notify?.Invoke($"Начало загрузки.");
+                Notify?.Invoke($"Начало загрузки.", true);
 
                 int fileNumber = 1;
 
                 foreach (var file in serverHashes)
                 {
                     fileNumber++;
-                    Notify?.Invoke($"Загрузка - {file.FileName} | {fileNumber}/{serverHashes.Count}");
+                    Notify?.Invoke($"Загрузка - {file.FileName} | {fileNumber}/{serverHashes.Count}", true);
                     DownloadFileFromFtp(file.FileName);
                 }
 
-                Notify?.Invoke($"Загрузка завершена.");
+                Notify?.Invoke($"Загрузка завершена.", true);
 
                 GetClientHashes();
             }
