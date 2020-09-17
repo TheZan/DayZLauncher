@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DayZLauncher.Model;
 using Microsoft.Win32;
 
 namespace DayZLauncher.View
@@ -53,13 +54,15 @@ namespace DayZLauncher.View
             if (gamePath != "")
             {
                 CreateSettingsProfile();
-
+                HideSteamId();
                 DialogResult = true;
             }
         }
 
         private void CreateSettingsProfile()
         {
+            ShowOrHideFiles(FileAttributes.Normal, FileAttributes.Normal);
+
             var myDocuments = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}";
 
             if (!Directory.Exists(@$"{myDocuments}\DayZ"))
@@ -82,6 +85,28 @@ namespace DayZLauncher.View
                     fs.Write(array, 0, array.Length);
                 }
             }
+
+            if (!Directory.GetFiles(LauncherSettings.Default.GamePath).Where(p => p == "!StartGame.ini").Any())
+            {
+                using (FileStream fs = File.Create(@$"{LauncherSettings.Default.GamePath}\!StartGame.ini"))
+                {
+                    var text = LauncherSettings.Default.StartIni;
+                    byte[] array = System.Text.Encoding.Default.GetBytes(text);
+                    fs.Write(array, 0, array.Length);
+                }
+            }
+
+            if (!Directory.GetFiles(LauncherSettings.Default.GamePath).Where(p => p == "!start_game.bat").Any())
+            {
+                using (FileStream fs = File.Create(@$"{LauncherSettings.Default.GamePath}\!start_game.bat"))
+                {
+                    var text = LauncherSettings.Default.StartGameBat;
+                    byte[] array = System.Text.Encoding.Default.GetBytes(text);
+                    fs.Write(array, 0, array.Length);
+                }
+            }
+
+            ShowOrHideFiles(FileAttributes.Hidden, FileAttributes.System);
         }
 
         private void Cancel_OnClick(object sender, RoutedEventArgs e)
@@ -144,6 +169,23 @@ namespace DayZLauncher.View
                 foreach (var file in hideFiles)
                 {
                     File.SetAttributes(file, fileAttributes | attributes);
+                }
+            }
+        }
+
+        private void HideSteamId()
+        {
+            var roaming = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}Roaming\\SmartSteamEmu";
+
+            if (Directory.Exists(roaming))
+            {
+                var files = Directory.GetFiles(roaming).ToList();
+                var hideFiles = files.Where(fileName =>
+                    fileName == $"{roaming}!steam_id.ini").ToList();
+
+                foreach (var file in hideFiles)
+                {
+                    File.SetAttributes(file, FileAttributes.System | FileAttributes.Hidden | FileAttributes.ReadOnly);
                 }
             }
         }

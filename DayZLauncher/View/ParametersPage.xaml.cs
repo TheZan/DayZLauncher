@@ -22,5 +22,22 @@ namespace DayZLauncher.View
         {
             InitializeComponent();
         }
+
+        private void Int_TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
+
+        private void Double_TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !((Char.IsDigit(e.Text, 0) || ((e.Text == ".") && (DS_Count(((TextBox)sender).Text) < 1))));
+        }
+
+        public int DS_Count(string s)
+        {
+            string substr = ".";
+            int count = (s.Length - s.Replace(substr, "").Length) / substr.Length;
+            return count;
+        }
     }
 }

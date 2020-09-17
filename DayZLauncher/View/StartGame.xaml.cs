@@ -1,7 +1,10 @@
-﻿using System;
+﻿using DayZLauncher.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,6 +24,10 @@ namespace DayZLauncher.View
         public StartGame()
         {
             InitializeComponent();
+
+            var viewModel = new StartGameViewModel();
+            DataContext = viewModel;
+            viewModel.FinishCheck += (e, a) => DialogResult = true;
         }
     }
 }

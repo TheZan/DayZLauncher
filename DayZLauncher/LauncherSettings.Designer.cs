@@ -12,7 +12,7 @@ namespace DayZLauncher {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0")]
     internal sealed partial class LauncherSettings : global::System.Configuration.ApplicationSettingsBase {
         
         private static LauncherSettings defaultInstance = ((LauncherSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new LauncherSettings())));
@@ -253,6 +253,95 @@ fov=0.95993;")]
             }
             set {
                 this["DayZSettings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"[Launcher]
+Target = DayZ_BE.exe
+StartIn = 
+CommandLine = -name=Survivor ""-mod=;"" -nosplash -skipIntro -noPause -nologs -cpuCount=4 -exThreads=0 -maxMem=4096 -maxVRAM=2048 -ReplLastServToWritedPar -HideOption  -HideChooseServer -HideCharacterStats -HideNewsFeed -connect=127.0.0.1 -port=2302
+SteamClientPath = SmartSteamEmu\SmartSteamEmu.dll
+SteamClientPath64 = SmartSteamEmu\SmartSteamEmu64.dll
+Persist = 0
+ParanoidMode = 0
+InjectDll = 0
+
+[SmartSteamEmu]
+AvatarFilename = avatar.png
+PersonaName = Tester
+AppId = 221100
+SteamIdGeneration = GenerateRandom
+Language = English
+
+VR = False
+Offline = False
+QuickJoinHotkey = SHIFT + TAB
+MasterServer = 188.40.40.201:27010
+MasterServerGoldSrc = 188.40.40.201:27010
+[Achievements]
+FailOnNonExistenceStats = False
+
+[SSEOverlay]
+DisableOverlay = True
+OnlineMode = True
+Language = 
+ScreenshotHotkey = F12
+HookRefCount = True
+OnlineKey = 
+
+[DirectPatch]
+
+[Debug]
+EnableLog = False
+MarkLogHotkey = CTRL + ALT + M
+LogFilter = User Logged On
+Minidump = False
+
+[DLC]
+Default = True
+
+[Networking]
+BroadcastAddress = 192.168.0.1
+ListenPort = 31313
+MaximumPort = 10
+DiscoveryInterval = 3
+MaximumConnection = 200
+
+[PlayerManagement]
+AllowAnyoneConnect = False
+AdminPassword = ")]
+        public string StartIni {
+            get {
+                return ((string)(this["StartIni"]));
+            }
+            set {
+                this["StartIni"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("start \"\" \"SmartSteamEmu\\SmartSteamLoader.exe\" !StartGame.ini\r\nexit")]
+        public string StartGameBat {
+            get {
+                return ((string)(this["StartGameBat"]));
+            }
+            set {
+                this["StartGameBat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"mod\@CommunityFramework;mod\@CommunityOnlineTools;mod\@DayZExpansion;mod\@DayZExpansionLicensed;mod\@ToxicZone;mod\@Banking;mod\@BetterInspect;mod\@BountyFix;mod\@Builderitems;mod\@DboSlots;mod\@Fliptransport;mod\@Plus200Home;mod\@SnapHeliToHelipad;mod\@zspawnselection;mod\@Zspawnselbaseadd;mod\@AdvancedWeaponScopes;mod\@Awesomearmbands;mod\@Camonetplusv1041;mod\@ChernarusrpAe86;mod\@Cj187cars;mod\@Cl0udsMilitaryGear;mod\@CmzSupercar;mod\@CrskBmw525iE34;mod\@Crskvaz2107;mod\@CustomBarrelsByKaetzchen;mod\@DayzNavigation;mod\@DingoTruck;mod\@FidovPack4;mod\@InvisibleClothingMod;mod\@KamazTruck;mod\@LandRoverDefender110;mod\@MassSmanyitemoverhaul;mod\@MercedesG65amg;mod\@ModularVestSystem;mod\@Moreguns;mod\@Muchstuffpack;mod\@NehrPickupLadaExpansion;mod\@AltarCommandoUnitBlackmarketTrader;mod\@ChernarusBattalionHeadquartersSkalistyIsland;mod\@NeafAircraftMilitaryBase;mod\@PavlovoMediumSecurityMilitary;mod\@PrisionIslandSuperMaxCorrectionalFacility;mod\@108clothingfixedz;mod\@modconflictfix;mod\@noexplodinghelis;mod\@UnofficialExpansionFixes;mod\@Trader;mod\@TraderFixesandFeatures;mod\@Lightsword")]
+        public string Mods {
+            get {
+                return ((string)(this["Mods"]));
+            }
+            set {
+                this["Mods"] = value;
             }
         }
     }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DayZLauncher.View"
         xmlns:viewModel="clr-namespace:DayZLauncher.ViewModel"
         mc:Ignorable="d"
-        Title="Проверка" ShowInTaskbar="False" Height="110" Width="400" WindowStartupLocation="CenterOwner" WindowStyle="None" ResizeMode="NoResize">
+        Title="Проверка" ShowInTaskbar="False" SizeToContent="Height" Width="400" WindowStartupLocation="CenterOwner" WindowStyle="None" ResizeMode="NoResize">
 
     <Window.DataContext>
         <viewModel:StartGameViewModel/>
@@ -16,12 +16,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock FontWeight="DemiBold" MaxWidth="380" TextWrapping="Wrap" Grid.Row="0" Text="{Binding TaskStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFFFFF" FontFamily="Roboto" FontSize="12" Margin="5" HorizontalAlignment="Center"></TextBlock>
-        <ProgressBar Grid.Row="1" Background="#3B3843" Foreground="#2B233C" Margin="5" Height="10" Maximum="{Binding ProgressBarMaximum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="{Binding ProgressBarValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsIndeterminate="{Binding IsIndeterminate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock MaxWidth="380" MinWidth="100" TextWrapping="Wrap" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Text="{Binding DownloadStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-        <Button IsCancel="True" Grid.Row="3" Content="ОТМЕНА" HorizontalAlignment="Right" Margin="5" Width="80"></Button>
+        <TextBlock MaxHeight="30" TextAlignment="Center" FontWeight="DemiBold" MaxWidth="380" TextWrapping="Wrap" Grid.Row="0" Text="{Binding TaskStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFFFFF" FontFamily="Roboto" FontSize="12" Margin="5" HorizontalAlignment="Center"></TextBlock>
+        <ProgressBar Visibility="{Binding ProgressBarVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Background="#3B3843" Foreground="#2B233C" Margin="5" Height="10" Maximum="{Binding ProgressBarMaximum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="{Binding ProgressBarValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsIndeterminate="{Binding IsIndeterminate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Visibility="{Binding ProgressBarVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Foreground="#FFFFFF" MaxWidth="380" MinWidth="100" TextWrapping="Wrap" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Text="{Binding DownloadStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Command="{Binding StartGameCommand}" Visibility="{Binding StartButtonVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsDefault="True" Content="ИГРАТЬ" Margin="5" Width="80"/>
+            <Button IsCancel="True" Content="ОТМЕНА" Margin="5" Width="80"/>
+        </StackPanel>
     </Grid>
 </Window>

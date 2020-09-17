@@ -21,9 +21,6 @@
         <DataTemplate DataType="{x:Type viewModel:ServersPageViewModel}">
             <view:ServersPage />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:ModsPageViewModel}">
-            <view:ModsPage />
-        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ParametersPageViewModel}">
             <view:ParametersPage />
         </DataTemplate>
@@ -201,6 +198,6 @@
                 </Image.Style>
             </Image>
         </Grid>
-        <ContentPresenter  Grid.Column="1" Grid.Row="1" Content="{Binding CurrentPageViewModel}"/>
+        <ContentPresenter Grid.Column="1" Grid.Row="1" Content="{Binding CurrentPageViewModel}"/>
     </Grid>
 </Window>

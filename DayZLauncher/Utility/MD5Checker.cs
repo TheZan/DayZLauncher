@@ -13,7 +13,7 @@ namespace DayZLauncher.Utility
     {
         public MD5Checker(string folder, string ftp)
         {
-            modsFolder = $"{folder}\\Mod";
+            modsFolder = $"{folder}\\mod";
             ftpUrl = ftp;
 
             if (!Directory.Exists(modsFolder))
@@ -27,6 +27,10 @@ namespace DayZLauncher.Utility
         public delegate void DownloadHandler(int current, int maximum, bool progress);
 
         public event DownloadHandler DownloadStatus;
+
+        public delegate void TaskHandler();
+
+        public event TaskHandler TaskFinish;
 
         private readonly string modsFolder;
         private readonly string ftpUrl;
@@ -70,11 +74,15 @@ namespace DayZLauncher.Utility
                     DownloadFileFromFtp(file.FileName);
                 }
 
-                Notify?.Invoke("Загрузка завершена. Все файлы успешно прошли проверку.", true);
+                Notify?.Invoke("Загрузка файлов завершена. Проверка файлов.", true);
+
+                GetClientHashes();
+                Checksum();
             }
             else
             {
-                Notify?.Invoke("Все файлы успешно прошли проверку.", true);
+                Notify?.Invoke("Все файлы успешно прошли проверку. Запуск игры...", true);
+                TaskFinish?.Invoke();
             }
         }
 
@@ -154,7 +162,7 @@ namespace DayZLauncher.Utility
 
                     fileNumber++;
 
-                    Notify?.Invoke($"{fileNumber}/{serverHashes.Count}", false);
+                    Notify?.Invoke($"Проверка {fileNumber}/{serverHashes.Count}", true);
                 }
             }
             else

@@ -82,11 +82,8 @@ namespace DayZLauncher.ViewModel
                         case "СЕРВЕРА":
                             CurrentPageViewModel = PageViewModels[2];
                             break;
-                        case "МОДЫ":
-                            CurrentPageViewModel = PageViewModels[3];
-                            break;
                         case "ПАРАМЕТРЫ":
-                            CurrentPageViewModel = PageViewModels[4];
+                            CurrentPageViewModel = PageViewModels[3];
                             break;
                     }
                 });
@@ -100,14 +97,12 @@ namespace DayZLauncher.ViewModel
                 new MenuItem(){Item = "АККАУНТ", IsEnabled = false},
                 new MenuItem(){Item = "НОВОСТИ", IsEnabled = false},
                 new MenuItem(){Item = "СЕРВЕРА", IsEnabled = true},
-                new MenuItem(){Item = "МОДЫ", IsEnabled = true},
                 new MenuItem(){Item = "ПАРАМЕТРЫ", IsEnabled = true}
             };
 
             PageViewModels.Add(new AccountPageViewModel());
             PageViewModels.Add(new NewsPageViewModel());
             PageViewModels.Add(new ServersPageViewModel());
-            PageViewModels.Add(new ModsPageViewModel());
             PageViewModels.Add(new ParametersPageViewModel());
 
             CurrentPageViewModel = PageViewModels[2];
