@@ -9,6 +9,8 @@ using DayZLauncher.Navigation;
 using DayZLauncher.Utility;
 using DayZLauncher.View;
 using Microsoft.Win32;
+using AutoUpdaterDotNET;
+using System.Windows.Threading;
 
 namespace DayZLauncher.ViewModel
 {
@@ -108,6 +110,15 @@ namespace DayZLauncher.ViewModel
             CurrentPageViewModel = PageViewModels[2];
 
             StartLauncher();
+
+            AutoUpdater.Start("ftp://5.188.158.148/Updater64.xml");
+
+            DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(2) };
+            timer.Tick += delegate
+            {
+                AutoUpdater.Start("ftp://5.188.158.148/Updater64.xml");
+            };
+            timer.Start();
         }
 
         private void StartLauncher()

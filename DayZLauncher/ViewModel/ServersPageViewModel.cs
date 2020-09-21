@@ -142,18 +142,14 @@ namespace DayZLauncher.ViewModel
 
         private void HideSteamId()
         {
-            var roaming = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}Roaming\\SmartSteamEmu";
-
+            var roaming = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SmartSteamEmu");
             if (Directory.Exists(roaming))
             {
                 var files = Directory.GetFiles(roaming).ToList();
-                var hideFiles = files.Where(fileName =>
-                    fileName == $"{roaming}!steam_id.ini").ToList();
+                var hideFile = files.FirstOrDefault(fileName =>
+                    fileName == Path.Combine(roaming, "steam_id.ini"));
 
-                foreach (var file in hideFiles)
-                {
-                    File.SetAttributes(file, FileAttributes.System | FileAttributes.Hidden | FileAttributes.ReadOnly);
-                }
+                File.SetAttributes(hideFile, FileAttributes.System | FileAttributes.Hidden | FileAttributes.ReadOnly);
             }
         }
     }

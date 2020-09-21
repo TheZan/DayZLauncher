@@ -93,8 +93,6 @@ namespace DayZLauncher.ViewModel
                 myProc.StartInfo.FileName = $"{LauncherSettings.Default.GamePath}!start_game.bat";
                 myProc.StartInfo.WorkingDirectory = $"{LauncherSettings.Default.GamePath}";
                 myProc.Start();
-
-                FinishCheck?.Invoke(this, EventArgs.Empty);
             }
             catch(Exception ex)
             {
@@ -102,12 +100,14 @@ namespace DayZLauncher.ViewModel
             }
         }
 
-        private async void Start()
+        private async Task<bool> Start()
         {
             StartButtonVisibility = Visibility.Collapsed;
             ProgressBarVisibility = Visibility.Visible;
 
             await Task.Run(checker.StartChecking);
+
+            return true;
         }
 
         private MD5Checker checker;
@@ -202,11 +202,14 @@ namespace DayZLauncher.ViewModel
         {
             get
             {
-                return startGameCommand ??= new RelayCommand(obj =>
+                return startGameCommand ??= new RelayCommand(async obj =>
                 {
                     checker.TaskFinish += () => LaunchGame();
 
-                    Start();
+                    if (await Task.Run(Start))
+                    {
+                        FinishCheck?.Invoke(this, EventArgs.Empty);
+                    }
                 });
             }
         }

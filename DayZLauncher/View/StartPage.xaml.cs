@@ -39,6 +39,7 @@ namespace DayZLauncher.View
                 LauncherSettings.Default.ProfileName = "Survivor";
                 LauncherSettings.Default.Save();
                 GamePathTextBox.Text = gamePath;
+                CreateSettingsProfile();
                 ShowOrHideFiles(FileAttributes.Normal, FileAttributes.Normal);
                 SetParameter("-name=", " ", LauncherSettings.Default.ProfileName);
                 ShowOrHideFiles(FileAttributes.Hidden, FileAttributes.System);
@@ -53,7 +54,6 @@ namespace DayZLauncher.View
         {
             if (gamePath != "")
             {
-                CreateSettingsProfile();
                 HideSteamId();
                 DialogResult = true;
             }
@@ -175,18 +175,14 @@ namespace DayZLauncher.View
 
         private void HideSteamId()
         {
-            var roaming = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}Roaming\\SmartSteamEmu";
-
+            var roaming = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SmartSteamEmu");
             if (Directory.Exists(roaming))
             {
                 var files = Directory.GetFiles(roaming).ToList();
-                var hideFiles = files.Where(fileName =>
-                    fileName == $"{roaming}!steam_id.ini").ToList();
+                var hideFile = files.FirstOrDefault(fileName =>
+                    fileName == System.IO.Path.Combine(roaming, "steam_id.ini"));
 
-                foreach (var file in hideFiles)
-                {
-                    File.SetAttributes(file, FileAttributes.System | FileAttributes.Hidden | FileAttributes.ReadOnly);
-                }
+                File.SetAttributes(hideFile, FileAttributes.System | FileAttributes.Hidden | FileAttributes.ReadOnly);
             }
         }
     }
